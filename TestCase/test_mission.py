@@ -5,10 +5,18 @@ from Common import Log
 
 class TestMission:
 
-    def test_createAgenda(self): # 添加议程（创建学习会）
+    def test_createMeeting(self): # 创建学习会
         self.log = Log.MyLog()
         #self.log.error('get cookies error, please checkout!!!')
         expected_msg = "success"
-        a = missionApi.createAgenda()
+        a = missionApi.createMeeting()
+        msg =a["msg"]
+        assert msg == expected_msg
+
+
+    def test_createAgenda(self): # 创建学习会
+        self.log = Log.MyLog()
+        expected_msg = "success"
+        a = missionApi.createMeeting()
         msg =a["msg"]
         assert msg == expected_msg
