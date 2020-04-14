@@ -14,7 +14,7 @@ import os
 class Config:
     # titles:
     TITLE_DEBUG = "private_debug"
-
+    TITLE_EMAIL = "mail"
 
     # values:
     # [debug\release]
@@ -24,6 +24,14 @@ class Config:
     VALUE_HOST = "host"
     VALUE_LOGIN_HOST = "loginHost"
     VALUE_LOGIN_INFO = "loginInfo"
+
+    # [mail]
+    VALUE_SMTP_SERVER = "smtpserver"
+    VALUE_SENDER = "sender"
+    VALUE_RECEIVER = "receiver"
+    VALUE_USERNAME = "username"
+    VALUE_PASSWORD = "password"
+
     # path
     path_dir = str(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
 
@@ -45,6 +53,12 @@ class Config:
         self.host_debug = self.get_conf(Config.TITLE_DEBUG, Config.VALUE_HOST)
         self.loginHost_debug = self.get_conf(Config.TITLE_DEBUG, Config.VALUE_LOGIN_HOST)
         self.loginInfo_debug = self.get_conf(Config.TITLE_DEBUG, Config.VALUE_LOGIN_INFO)
+
+        self.smtpserver = self.get_conf(Config.TITLE_EMAIL, Config.VALUE_SMTP_SERVER)
+        self.sender = self.get_conf(Config.TITLE_EMAIL, Config.VALUE_SENDER)
+        self.receiver = self.get_conf(Config.TITLE_EMAIL, Config.VALUE_RECEIVER)
+        self.username = self.get_conf(Config.TITLE_EMAIL, Config.VALUE_USERNAME)
+        self.password = self.get_conf(Config.TITLE_EMAIL, Config.VALUE_PASSWORD)
 
     def get_conf(self, title, value):
         """

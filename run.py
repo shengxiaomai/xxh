@@ -15,7 +15,7 @@
 import sys
 
 import pytest
-
+from Common import Email
 from Common import Log
 from Common import Shell
 from Conf import Config

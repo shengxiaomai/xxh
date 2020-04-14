@@ -14,18 +14,15 @@ class missionApi(BaseApi):
     createMeeting_url = host+'createMeeting?t='+str(int(time.time()))
     createAgenda_url = host + 'createMeeting?t=' + str(int(time.time()))
     headers = {"authorization": login.Login.login(), "content - type": "application/json;charset=utf-8"}
-    @classmethod
-    def createMeeting(self):
-        payload = {
-            "desc": "<!DOCTYPE html>\n      <html lang=\"en\">\n      <head>\n        <meta charset=\"UTF-8\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n        <title>Document</title>\n      </head>\n      <body>\n        <div style='font-size: 17px;color: #7f7f7f;'>我的学习会</div>\n      </body>\n      </html>",
-            "name": "我的学习会3"}
-        self.json_data = requests.post(self.createMeeting_url, headers=self.headers,json=payload, verify=False).json()
-        self.verbose(self.json_data)
-        return self.json_data
 
+    #创建学习会
     @classmethod
-    def createAgenda(self):
-        payload = {"name": "自由讨论","desc": "","ext": "{\"tagId\":\"626549294551269829\",\"meetingType\":1,\"timeUse\":\"5分钟\"}","tagId": "626549294551269829"}
+    def createMeeting(self,payload):
+        self.json_data = requests.post(self.createMeeting_url, headers=self.headers,json=payload, verify=False).json()
+        return self.json_data
+    #添加议程
+    @classmethod
+    def createAgenda(self,payload):
 
         self.json_data = requests.post(self.createAgenda_url, headers=self.headers, json=payload, verify=False).json()
         self.verbose(self.json_data)
