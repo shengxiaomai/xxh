@@ -22,6 +22,7 @@ class Config:
     VALUE_ENVIRONMENT = "environment"
     VALUE_VERSION_CODE = "versionCode"
     VALUE_HOST = "host"
+    VALUE_UserHost = "user_host"
     VALUE_LOGIN_HOST = "loginHost"
     VALUE_LOGIN_INFO = "loginInfo"
 
@@ -51,6 +52,7 @@ class Config:
         self.environment_debug = self.get_conf(Config.TITLE_DEBUG, Config.VALUE_ENVIRONMENT)
         self.versionCode_debug = self.get_conf(Config.TITLE_DEBUG, Config.VALUE_VERSION_CODE)
         self.host_debug = self.get_conf(Config.TITLE_DEBUG, Config.VALUE_HOST)
+        self.user_host_debug = self.get_conf(Config.TITLE_DEBUG, Config.VALUE_UserHost)
         self.loginHost_debug = self.get_conf(Config.TITLE_DEBUG, Config.VALUE_LOGIN_HOST)
         self.loginInfo_debug = self.get_conf(Config.TITLE_DEBUG, Config.VALUE_LOGIN_INFO)
 

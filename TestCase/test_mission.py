@@ -1,8 +1,10 @@
+#coding=utf-8
+
 import pytest
 import allure
 from api.mission import missionApi
 from Common import Log
-from Common import Assert
+import datetime
 
 class TestMission:
     """
@@ -36,6 +38,22 @@ class TestMission:
                                                    "desc":"<!DOCTYPE html>\n      <html lang=\"en\">\n      <head>\n        <meta charset=\"UTF-8\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n        <title>Document</title>\n        <style>\n          * {\n            padding: 0;\n            margin: 0;\n          }\n        </style>\n      </head>\n      <body>\n        <div style='font-size: 17px;color: #7f7f7f;'>461616</div>\n      </body>\n      </html>","ext":"{\"tagId\":\"626544899323331013\",\"meetingType\":0,\"speaker\":\"15166841990 Qiucw\",\"speakerId\":\"636786270315479359\",\"timeUse\":\"9分钟\",\"teachStyle\":\"直播演讲\",\"audio\":{\"result\":\"\",\"name\":\"\"},\"video\":{\"result\":\"\",\"name\":\"\"},\"content\":\"<!DOCTYPE html>\\n      <html lang=\\\"en\\\">\\n      <head>\\n        <meta charset=\\\"UTF-8\\\">\\n        <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\">\\n        <title>Document</title>\\n        <style>\\n          * {\\n            padding: 0;\\n            margin: 0;\\n          }\\n        </style>\\n      </head>\\n      <body>\\n        <div style='font-size: 17px;color: #7f7f7f;'>461616</div>\\n      </body>\\n      </html>\"}",
                                                    "tagId":"626544899323331013"}])
     def test_createAgenda(self,payload):
+        '''
+        测试添加议程
+        :param payload:
+        :return:
+        '''
         self.log.info("开始测试添加议程")
         a = missionApi.createMeeting(payload)
+        assert a["msg"] == self.expected_msg
+
+    @pytest.mark.parametrize("payload", [{"agendaIds":["656964581662392753"],"name":"你好","pid":"656789803471208874","startTime":datetime.datetime.strftime(datetime.datetime.now()+datetime.timedelta(minutes=5),'%Y-%m-%d %H:%M:%S')}])
+    def test_createTheme(self,payload):
+        '''
+        测试添加主题
+        :param payload:
+        :return:
+        '''
+        self.log.info("开始测试添加主题")
+        a = missionApi.createTheme(payload)
         assert a["msg"] == self.expected_msg

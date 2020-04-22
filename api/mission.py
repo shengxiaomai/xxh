@@ -13,6 +13,7 @@ class missionApi(BaseApi):
     host = conf.host_debug
     createMeeting_url = host+'createMeeting?t='+str(int(time.time()))
     createAgenda_url = host + 'createMeeting?t=' + str(int(time.time()))
+    createTheme_url = host + 'createTheme?t=' + str(int(time.time()))
     headers = {"authorization": login.Login.login(), "content - type": "application/json;charset=utf-8"}
 
     #创建学习会
@@ -23,7 +24,17 @@ class missionApi(BaseApi):
     #添加议程
     @classmethod
     def createAgenda(self,payload):
-
         self.json_data = requests.post(self.createAgenda_url, headers=self.headers, json=payload, verify=False).json()
+        self.verbose(self.json_data)
+        return self.json_data
+
+    @classmethod
+    def createTheme(self,payload):
+        '''
+
+        :param payload: 方法参数
+        :return: 返回json
+        '''
+        self.json_data = requests.post(self.createTheme_url, headers=self.headers, json=payload, verify=False).json()
         self.verbose(self.json_data)
         return self.json_data
