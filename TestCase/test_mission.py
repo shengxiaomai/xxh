@@ -177,12 +177,12 @@ class TestMission:
     @pytest.mark.parametrize("payload", [{}])
     def test_queryThemeInfo(self, payload):
         '''
-        用户查询所有学习会列表
-        版本v1.1.0
+        主题详情查询
+        版本v1.0.0
         :param payload: 参数
         :return:
         '''
-        self.log.info("用户查询所有学习会列表")
+        self.log.info("主题详情查询")
         a = missionApi.queryThemeInfo(payload)
         assert a["msg"] == self.expected_msg
 
