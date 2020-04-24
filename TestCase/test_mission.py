@@ -76,6 +76,45 @@ class TestMission:
         assert a["msg"] == self.expected_msg
 
 
+    @pytest.mark.parametrize("payload", [{}])
+    def test_delAgendaById(self, payload):
+        '''
+        删除议程
+        版本v1.0.0
+        :param payload: 参数
+        :return:
+        '''
+        self.log.info("删除议程")
+        a = missionApi.delAgendaById(payload)
+        assert a["msg"] == self.expected_msg
+
+
+    @pytest.mark.parametrize("payload", [{}])
+    def test_delMeetingById(self, payload):
+        '''
+        删除我的学习会
+        版本v1.1.0
+        :param payload: 参数
+        :return:
+        '''
+        self.log.info("删除我的学习会")
+        a = missionApi.delMeetingById(payload)
+        assert a["msg"] == self.expected_msg
+
+
+    @pytest.mark.parametrize("payload", [{}])
+    def test_delThemeById(self, payload):
+        '''
+        删除主题会
+        版本v1.1.0
+        :param payload: 参数
+        :return:
+        '''
+        self.log.info("删除主题会")
+        a = missionApi.delThemeById(payload)
+        assert a["msg"] == self.expected_msg
+
+
     @pytest.mark.parametrize("payload", [{"desc": "再次编辑",
     "name": "测试编辑学习会",
     "content":"再次编辑",
@@ -184,6 +223,24 @@ class TestMission:
         '''
         self.log.info("主题详情查询")
         a = missionApi.queryThemeInfo(payload)
+        assert a["msg"] == self.expected_msg
+
+
+    @pytest.mark.parametrize("payload", [{
+        "ext": "{\"tagId\":\"626549294551269829\",\"meetingType\":1,\"timeUse\":\"4分钟\"}",
+        "id": "667150077277504157",
+        "name": "自由讨论",
+        "tagId": "626549294551269829"
+    }])
+    def test_updateAgenda(self, payload):
+        '''
+        修改议程
+        版本v1.0.0
+        :param payload: 参数
+        :return:
+        '''
+        self.log.info("修改议程")
+        a = missionApi.updateAgenda(payload)
         assert a["msg"] == self.expected_msg
 
 
