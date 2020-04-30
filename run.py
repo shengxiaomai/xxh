@@ -29,7 +29,7 @@ if __name__ == '__main__':
     shell = Shell.Shell()
     xml_report_path = conf.xml_report_path
     html_report_path = conf.html_report_path
-    print("测试分支修改")
+    print("测试分支")
 
     # 定义测试集
     args = ['-s', '-q', '--alluredir', xml_report_path]
