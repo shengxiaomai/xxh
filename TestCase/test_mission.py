@@ -36,7 +36,7 @@ class TestMission:
         :return:
         '''
         self.log.info("开始测试添加议程")
-        a = missionApi.createMeeting(payload)
+        a = missionApi.createAgenda(payload)
         assert a["msg"] == self.expected_msg
 
 
