@@ -19,6 +19,5 @@ class Login:
   
             if r.json()["status"] == 200:
                 self.token=(r.json()["body"]["userToken"])
-
         return self.token
 
