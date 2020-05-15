@@ -1,5 +1,5 @@
 import requests
-from Common import Log
+import pytest
 #获取token
 class Login:
 
@@ -16,12 +16,9 @@ class Login:
             #登录
             url="http://xxh.maipingba.com/user/app/appLogin"
             r=requests.post(url,json={"device": "android","mobile": "15002020506","verifyCode": "1234"},verify=False)
+  
             if r.json()["status"] == 200:
                 self.token=(r.json()["body"]["userToken"])
 
-
-
         return self.token
 
-
-print(5)
