@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-链接数据库
+连接数据库
 
 """
 import pymysql

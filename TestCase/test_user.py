@@ -1,7 +1,10 @@
 #coding=utf-8
+import os
 
 import pytest
 import allure
+import yaml
+
 from api.user import userApi
 from Common import Log
 
@@ -11,8 +14,12 @@ class TestUser:
     expected_msg = "success"
     expected_mobile="15002020506"
     expected_userId = "636804209588568383"
+    path_dir = str(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
 
-    @pytest.mark.parametrize("payload", [{"mobile": "18682115996"}])
+
+    @pytest.mark.run(order = -1)
+    #@pytest.mark.parametrize("payload", [{"mobile": "18682115996"},{"mobile": "15166841990"}])
+    @pytest.mark.parametrize("payload", yaml.safe_load(open(path_dir+"/TestData/sendVerifyCode.yml",encoding="utf=8")))
     def test_sendVerifyCode(self,payload):
         '''
         测试发送验证码接口
@@ -22,9 +29,9 @@ class TestUser:
         a=userApi(payload).sendVerifyCode()["msg"]
         assert a == self.expected_msg
 
-
+    @pytest.mark.run(order=1)
     @pytest.mark.parametrize("payload", [{"device": "android","mobile": "15166831990","verifyCode": "1234"},{"device": "android","mobile": "15166831990","verifyCode": "2334"}])
-    def test_sendVerifyCode(self, payload):
+    def test_appLogin(self, payload):
         '''
         测试登录接口
         :param payload:
@@ -36,7 +43,7 @@ class TestUser:
         else:
             assert a != self.expected_msg
 
-
+    @pytest.mark.run(order=3)
     @pytest.mark.parametrize("payload", [{"isEdit":1,"sex":1}])
     def test_editUserInfo(self, payload):
         '''
@@ -48,7 +55,7 @@ class TestUser:
         a = userApi(payload).editUserInfo()["msg"]
         assert a == self.expected_msg
 
-
+    @pytest.mark.run(order=2)
     @pytest.mark.parametrize("payload", [{}])
     def test_getUserInfo(self, payload):
         '''
