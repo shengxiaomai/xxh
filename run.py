@@ -35,7 +35,7 @@ if __name__ == '__main__':
     args = ['-s', '-q', '--alluredir', xml_report_path]
 
     pytest.main(args)
-    cmd = 'allure generate %s -o %s' % (xml_report_path, html_report_path)
+    cmd = 'allure generate  --clean %s -o %s' % (xml_report_path, html_report_path)
 
     try:
         shell.invoke(cmd)
